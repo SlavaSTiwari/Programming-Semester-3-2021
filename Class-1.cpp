@@ -1,6 +1,5 @@
 #include<iostream>
 #include<string>
-#include<vector>
 
   // QUESTION 1
 
@@ -8,6 +7,10 @@ std::string Find_longest(std::string input){
 
     char out, curr;
     int len_out=1, len_curr=1;
+    
+    if(input==""){
+        return "";
+    }
 
     for(int i=0; i<input.length()-1; i++){
       if(input[i]==input[i+1]){
@@ -196,17 +199,19 @@ public:
     Node* right;
 };
 
-void Add(Node** root, Node* n){
+void Add(Node** root, int val){
+    
+    Node *n = new Node(val);
 
     if(!*root){
         *root = n;
         return;
     }
-    if((*root)->data < n->data){
-        Add(&(*root)->right, n);
+    if(n->data > (*root)->data){
+        Add(&(*root)->right, val);
     }
     else{
-        Add(&(*root)->left, n);
+        Add(&(*root)->left, val);
     }
 }
 
@@ -275,16 +280,17 @@ int main(){
   int sum=0;
   Node* root = 0;
 
-  Add(&root, new Node(5));
-  Add(&root, new Node(-6));
-  Add(&root, new Node(-3));
-  Add(&root, new Node(12));
-  Add(&root, new Node(20));
-  Add(&root, new Node(-4));
+  Add(&root, 5);
+  Add(&root, -6);
+  Add(&root, -3);
+  Add(&root, 12);
+  Add(&root, 20);
+  Add(&root, -8);
 
   Print(root);
 
-   Leaf_sum(root, sum);
-   std::cout << "\nThe sum of all leaf nodes: " << sum << std::endl;
+  Leaf_sum(root, sum);
+  std::cout << "\nThe sum of all leaf nodes: " << sum << std::endl;
+  
   return 0;
 }
