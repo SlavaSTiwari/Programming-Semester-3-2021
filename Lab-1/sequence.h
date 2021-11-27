@@ -40,7 +40,8 @@ class ArraySequence : public Sequence<T>
             item_size = acount;
             item_capacity = acount*sizeof(T);
             items = new T[acount];
-            for(int i = 0; i<acount; i++){
+            for(int i = 0; i<acount; i++)
+            {
                 items[i] = aitems[i];
             }
         }
@@ -54,7 +55,6 @@ class ArraySequence : public Sequence<T>
         ~ArraySequence()
         {
             delete []items;
-            delete items;
         }
 
         void Resize(int new_size)
@@ -68,10 +68,17 @@ class ArraySequence : public Sequence<T>
             }
             else
             {
-                if(new_size < item_size){ cnt = new_size; }
-                else{cnt = item_size; }
+                if(new_size < item_size)
+                {
+                    cnt = new_size;
+                }
+                else
+                {
+                    cnt = item_size;
+                }
                 T *temp = new T[new_size];
-                for(int i=0; i<cnt; i++){
+                for(int i=0; i<cnt; i++)
+                {
                     temp[i] = items[i];
                 }
                 item_size = cnt;
@@ -91,7 +98,6 @@ class ArraySequence : public Sequence<T>
         {
             int last = item_size-1;
             if(last<0){last = 0;}
-            //std::cout << last << std::endl;
             return items[last];
         }
 
@@ -141,16 +147,16 @@ class ArraySequence : public Sequence<T>
             item_size--;
         }
 
-        void Prepend(const T& item) override // org = 0
+        void Prepend(const T& item) override
         {
             if(item_size == 0)
             {
-                this->Resize(1); //size = 1
+                this->Resize(1);
                 items[0] = item;
             }
             else{
-                this->Resize(item_size+1); //size = +1
-                int i = this->GetLength()-2; // i = 0
+                this->Resize(item_size+1);
+                int i = this->GetLength()-2;
                 for(i; i>=0; i--)
                 {
                     items[i+1] = items[i];
@@ -320,7 +326,6 @@ public:
 	{
 		if (list_capacity > list_length)
 		{
-			//std::cout << "Under capacity: " << list_capacity << "; Size: " << list_length << "; Appending: " << item << std::endl;
 			list_length++;
 			struct node* temp = head;
 			for (int i = 1; i < list_length; i++)
@@ -331,7 +336,6 @@ public:
 		}
 		else
 		{
-			//std::cout << "Capacity reached: " << list_capacity << "; Appending: " << item << std::endl;
 			struct node* temp = head;
 			while (temp->next != nullptr) {
 				temp = temp->next;

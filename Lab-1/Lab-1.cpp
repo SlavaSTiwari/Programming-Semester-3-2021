@@ -4,8 +4,6 @@
 #include<chrono>
 #include<random>
 
-#include"dyarray.h"
-#include"linklist.h"
 #include"elem_types.h"
 #include"sequence.h"
 #include"sorters.h"
@@ -58,7 +56,7 @@ void choose_sort(Sequence<T>* my_seq)
     {
         std::cout << "Defaulted to using quick sort:" << std::endl;
         Sequence<T> *quick_Sort_seq = quick_Sort(my_seq, compare);
-        //quick_Sort_seq->Print();
+        quick_Sort_seq->Print();
         delete quick_Sort_seq;
     }
     }
