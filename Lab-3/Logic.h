@@ -2,8 +2,6 @@
 
 class Logic
 {
-private:
-
 public:
 	std::string P1_symb = " ";
 	std::string P2_symb = " ";
@@ -33,7 +31,7 @@ public:
 		}
 	}
 
-	int Player_choice(Board board)
+	int Player_choice(const Board& board)
 	{
 		int input = -1;
 		std::cout << "Choose a position: ";
@@ -51,9 +49,9 @@ public:
 		return input;
 	}
 
-
-	std::string Check_winner(Board board)
+	std::string Check_winner(const Board& board)
 	{
+		
 		if (board.Win_cond(P1_symb))
 		{
 			return "P1";
@@ -89,8 +87,9 @@ public:
 		}
 		if (isMaximizing)
 		{
+			const int size = 9;
 			int best_score = -10000;
-			for (int i = 1; i <= 9; i++)
+			for (int i = 1; i <= size; i++)
 			{
 				if (board.Space_check(i))
 				{
@@ -109,8 +108,9 @@ public:
 		}
 		else
 		{
+			const int size = 9;
 			int best_score = 10000;
-			for (int i = 1; i <= 9; i++)
+			for (int i = 1; i <= size; i++)
 			{
 				if (board.Space_check(i))
 				{
@@ -131,10 +131,11 @@ public:
 
 	int Best_move(Board& board)
 	{
+		const int size = 9;
 		int score;
 		int best_score = -10000;
 		int best_move;
-		for (int i = 1; i <= 9; i++)
+		for (int i = 1; i <= size; i++)
 		{
 			// Is the spot available?
 			if (board.Space_check(i))
@@ -153,7 +154,6 @@ public:
 		std::cout << "TICTACBOT: 'Hahaha! The best move is: " << best_move << "!'" << std::endl;
 		return best_move;
 	}
-
 
 	bool replay()
 	{
@@ -177,8 +177,6 @@ public:
 		}
 	}
 
-
-
 	std::string Choose_turn()
 	{
 		srand(time(0));
@@ -193,5 +191,4 @@ public:
 			return "Player_2";
 		}
 	}
-
 };
