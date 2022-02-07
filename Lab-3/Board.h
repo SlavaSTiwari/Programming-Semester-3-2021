@@ -4,13 +4,12 @@ class Board
 {
 public:
 	std::vector<std::string> board;
-
 	Board()
 	{
 		board.resize(9, " ");
 	}
 
-	void Place(int pos, std::string symbol)
+	void Place(int pos, const std::string& symbol)
 	{
 		if (pos > 0 && pos <= 9 && Space_check(pos)) 
 		{
@@ -23,7 +22,7 @@ public:
 		}
 	}
 
-	bool Space_check(int pos)
+	 bool Space_check(int pos) const
 	{
 		if (pos > 0 && pos <= 9)
 		{
@@ -36,7 +35,7 @@ public:
 		}
 	}
 
-	bool Win_cond(std::string mark)
+	int Win_cond(const std::string& mark) const
 	{
 		return(((board[6] == mark and board[7] == mark and board[8] == mark) || // across the top
 		(board[3] == mark && board[4] == mark && board[5] == mark) || // across the middle
@@ -46,13 +45,12 @@ public:
 		(board[8] == mark && board[5] == mark && board[2] == mark) || // down the right side
 		(board[6] == mark && board[4] == mark && board[2] == mark) || // diagonal
 		(board[8] == mark && board[4] == mark && board[0] == mark)));
-
-		
 	}
 
-	bool Full_board_check()
+	bool Full_board_check() const
 	{
-		for (int i = 0; i < 9; i++)
+		const int size = 9;
+		for (int i = 0; i < size; i++)
 		{
 			if (Space_check(i))
 			{
@@ -77,5 +75,4 @@ public:
 		std::cout << "     |     |      " << std::endl;
 		std::cout << std::endl;
 	}
-
 };
