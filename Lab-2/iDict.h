@@ -4,6 +4,7 @@
 #include<vector>
 #include<unordered_map>
 
+
 template<class TKey,class TValue>
 class IDictionary		// HashTable implementation
 {
@@ -55,22 +56,23 @@ public:
 		return std::hash<TKey>{}(key) % Capacity;
 	}
 
-	double get_Count()		// No. of actually existing elements
+
+	double get_Count() const	// No. of actually existing elements
 	{
 		return this->Count;
 	}
 
-	double get_Capacity()	 // Total capacity in the Dictionary 
+	double get_Capacity() const	 // Total capacity in the Dictionary 
 	{
 		return this->Capacity;
 	}
 
-	bool is_Empty(int index)
+	bool is_Empty(const int& index) const
 	{
 		return !Dict[index].isUsed || Dict[index].isDeleted;
 	}
 
-	bool is_Deleted(int index)
+	bool is_Deleted(const int& index) const
 	{
 		return Dict[index].isDeleted;
 	}
